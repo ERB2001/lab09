@@ -1,0 +1,46 @@
+# File di classe compilato
+*..class
+
+# File di registro
+*..log
+
+# File BlueJ
+*.ctxt
+
+# Strumenti mobili per Java (J2ME)
+.mtj.tmp/
+
+# File di pacchetto #
+*..jar
+*.Guerra
+*.Nar
+*.orecchio
+*..zip
+*..tar.gz
+*..rar
+
+#log di arresto anomalo della macchina virtuale, vedere http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+.gradle
+**/costruire/
+! src/**/build/
+
+# Ignora la configurazione della GUI di Gradle
+gradle-app.setting
+
+# Evita di ignorare il file jar del wrapper Gradle (.jar i file vengono solitamente ignorati)
+! involucro gradle.jar
+
+# Evitare di ignorare le proprietà del wrapper Gradle
+! gradle-wrapper.properties
+
+# Cache del progetto
+.gradletasknamecache
+
+# File generati dal plugin Eclipse Gradle
+# Eclipse Core
+.progetto
+# Specifico per JDT (Eclipse Java Development Tools)
+.classpath
