@@ -55,6 +55,27 @@ public final class ConcurrentGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 agent.stopCounting();
+                stop.setEnabled(true);
+                up.setEnabled(true);
+                down.setEnabled(true);
+            }
+        });
+
+        up.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                agent.upIncrementCounting();
+            }
+        });
+
+        down.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                agent.downIncrementCounting();
             }
         });
     }
@@ -63,6 +84,8 @@ public final class ConcurrentGUI extends JFrame {
 
         private volatile boolean stop;
 
+        private volatile boolean change;
+
         private int counter;
 
         public void run() {
@@ -70,9 +93,21 @@ public final class ConcurrentGUI extends JFrame {
                 try {
                     // The EDT doesn't access `counter` anymore, it doesn't need to be volatile
                     final var nextText = Integer.toString(this.counter);
+
                     SwingUtilities.invokeAndWait(() -> ConcurrentGUI.this.display.setText(nextText));
-                    this.counter++;
+
+                    if (!change) {
+
+                        this.counter++;
+
+                    } else if (change) {
+
+                        this.counter--;
+
+                    }
+
                     Thread.sleep(100);
+
                 } catch (InvocationTargetException | InterruptedException ex) {
                     /*
                      * This is just a stack trace print, in a real program there
@@ -86,6 +121,15 @@ public final class ConcurrentGUI extends JFrame {
         public void stopCounting() {
             this.stop = true;
         }
+
+        public void upIncrementCounting() {
+            this.change = false;
+        }
+
+        public void downIncrementCounting() {
+            this.change = true;
+        }
+
     }
 
 }
