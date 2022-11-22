@@ -69,9 +69,9 @@ public final class AnotherConcurrentGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 agent.stopCounting();
-                stop.setEnabled(true);
-                up.setEnabled(true);
-                down.setEnabled(true);
+                stop.setEnabled(false);
+                up.setEnabled(false);
+                down.setEnabled(false);
             }
         });
 
@@ -119,9 +119,9 @@ public final class AnotherConcurrentGUI extends JFrame {
 
         if (timer.getCondition() == START) {
             agent.stopCounting();
-            stop.setEnabled(true);
-            up.setEnabled(true);
-            down.setEnabled(true);
+            stop.setEnabled(false);
+            up.setEnabled(false);
+            down.setEnabled(false);
         }
 
     }
