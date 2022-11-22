@@ -22,6 +22,8 @@ public final class AnotherConcurrentGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
+    private static final int START = 0;
+    private static final int END = 100;
     private final JLabel display = new JLabel();
     private final JButton up = new JButton("up");
     private final JButton down = new JButton("down");
@@ -60,13 +62,6 @@ public final class AnotherConcurrentGUI extends JFrame {
         CountDownTimer timer = new CountDownTimer();
 
         new Thread(timer).start();
-
-        if (timer.getCondition() == 0) {
-            agent.stopCounting();
-            stop.setEnabled(true);
-            up.setEnabled(true);
-            down.setEnabled(true);
-        }
 
         stop.addActionListener(new ActionListener() {
 
@@ -121,6 +116,14 @@ public final class AnotherConcurrentGUI extends JFrame {
                 agent.downIncrementCounting();
             }
         });
+
+        if (timer.getCondition() == START) {
+            agent.stopCounting();
+            stop.setEnabled(true);
+            up.setEnabled(true);
+            down.setEnabled(true);
+        }
+
     }
 
     /*
@@ -155,22 +158,23 @@ public final class AnotherConcurrentGUI extends JFrame {
 
     private class CountDownTimer implements Runnable {
 
-        private int time = 1000;
+        private int time = END;
 
         private boolean condition;
 
-        private boolean tmp;
+        // private boolean tmp;
 
         public void run() {
 
         }
 
         public int getCondition() {
+
             while (!condition) {
                 try {
+                    Thread.sleep(END);
                     time--;
-                    Thread.sleep(10);
-                    if (time == 0) {
+                    if (time == START) {
                         condition = true;
                     }
                     System.out.println(time);
@@ -180,8 +184,26 @@ public final class AnotherConcurrentGUI extends JFrame {
                     e.printStackTrace();
                 }
             }
+
             return time;
+
         }
+
+        /*
+         * if (time > 0) {
+         * try {
+         * Thread.sleep(10000);
+         * time--;
+         * } catch (InterruptedException e) {
+         * // TODO Auto-generated catch block
+         * e.printStackTrace();
+         * }
+         * } else {
+         * return time;
+         * }
+         * return 1;
+         * }
+         */
 
     }
 
@@ -209,13 +231,17 @@ public final class AnotherConcurrentGUI extends JFrame {
 
                         this.counter++;
 
+                        // Thread.sleep(100);
+
                     } else if (change) {
 
                         this.counter--;
 
+                        // Thread.sleep(100);
+
                     }
 
-                    Thread.sleep(100);
+                    Thread.sleep(END);
 
                 } catch (InvocationTargetException | InterruptedException ex) {
                     /*
