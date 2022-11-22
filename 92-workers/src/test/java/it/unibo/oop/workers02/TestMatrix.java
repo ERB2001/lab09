@@ -1,4 +1,6 @@
-package it.unibo.oop.lab.workers02;
+package it.unibo.oop.workers02;
+
+import it.unibo.oop.workers02.MultiThreadedSumMatrix;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -49,7 +51,7 @@ public class TestMatrix {
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
         for (final int threads : new int[] { 1, 2, 3, 8, 16, 32, 100 }) {
-            final SumMatrix sumList = null; // new MultiThreadedSumMatrix(threads);
+            final SumMatrix sumList = new MultiThreadedSumMatrix(threads);
             time = System.nanoTime();
             assertEquals(sum, sumList.sum(matrix), EXPECTED_DELTA);
             time = System.nanoTime() - time;

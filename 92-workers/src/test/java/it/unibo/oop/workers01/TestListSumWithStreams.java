@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.workers01;
+package it.unibo.oop.workers01;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ public class TestListSumWithStreams {
          * Prepare time ant test with different number of threads
          */
         long time;
-        for (final int threads: new int[] { 1, 2, 3, 8, 16, 32 }) {
+        for (final int threads : new int[] { 1, 2, 3, 8, 16, 32 }) {
             final SumList sumList = new MultiThreadedListSumWithStreams(threads);
             time = System.currentTimeMillis();
             assertEquals(sum, sumList.sum(list));
