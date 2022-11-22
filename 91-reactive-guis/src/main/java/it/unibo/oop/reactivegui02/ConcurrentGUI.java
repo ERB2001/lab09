@@ -55,9 +55,9 @@ public final class ConcurrentGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 agent.stopCounting();
-                stop.setEnabled(true);
-                up.setEnabled(true);
-                down.setEnabled(true);
+                stop.setEnabled(false);
+                up.setEnabled(false);
+                down.setEnabled(false);
             }
         });
 

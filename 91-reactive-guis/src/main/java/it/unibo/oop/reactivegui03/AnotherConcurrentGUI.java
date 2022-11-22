@@ -23,7 +23,7 @@ public final class AnotherConcurrentGUI extends JFrame {
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
     private static final int START = 0;
-    private static final int END = 100;
+    private static final int TIME = 100;
     private final JLabel display = new JLabel();
     private final JButton up = new JButton("up");
     private final JButton down = new JButton("down");
@@ -158,7 +158,7 @@ public final class AnotherConcurrentGUI extends JFrame {
 
     private class CountDownTimer implements Runnable {
 
-        private int time = END;
+        private int time = TIME;
 
         private boolean condition;
 
@@ -172,7 +172,7 @@ public final class AnotherConcurrentGUI extends JFrame {
 
             while (!condition) {
                 try {
-                    Thread.sleep(END);
+                    Thread.sleep(TIME);
                     time--;
                     if (time == START) {
                         condition = true;
@@ -241,7 +241,7 @@ public final class AnotherConcurrentGUI extends JFrame {
 
                     }
 
-                    Thread.sleep(END);
+                    Thread.sleep(TIME);
 
                 } catch (InvocationTargetException | InterruptedException ex) {
                     /*
